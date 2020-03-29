@@ -11,7 +11,7 @@
 #ifndef LP_OMPI_H_
 #define LP_OMPI_H_
 
-#include "config.h"
+#include "../config.h"
 
 //************************//
 //        LIBRARIES       //

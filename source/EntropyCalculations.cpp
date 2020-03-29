@@ -7,6 +7,8 @@
  */
 
 #include "EntropyCalculations.h"																									// EntropyCalculations.h is where the prototypes for the functions contained in this file are declared
+#include <cmath>
+using namespace std;
 
 double computeEntropy(double *U)
 {

@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ -z $1 ]; then
+  SOLVER=../source/solver
+else
+  SOLVER=$1
+fi
+
 #==============================================
 # Test for the Landau Damping ICs
 #==============================================
@@ -14,11 +20,11 @@ rm $moment_filename_test
 
 echo "Running code for 5 timesteps..." 
 mv LPsolver-input-test0.txt LPsolver-input.txt
-../source/solver 
+$SOLVER
 mv LPsolver-input.txt LPsolver-input-test0.txt
 
 echo "Checking values of moments are as expected..."
-sh moment_differ.sh $moment_filename_expected $moment_filename_test
+./moment_differ.sh $moment_filename_expected $moment_filename_test
 exit_val=$?
 
 if [ $exit_val -eq 1 ]; then
@@ -46,11 +52,11 @@ T_thresh=0.01
 
 echo "Running code for 5 timesteps..." 
 mv LPsolver-input-test1.txt LPsolver-input.txt
-../source/solver 
+$SOLVER
 mv LPsolver-input.txt LPsolver-input-test1.txt
 
 echo "Checking values of moments are as expected..."
-sh moment_differ.sh $moment_filename_expected $moment_filename_test $m_thresh $u1_thresh $u2_thresh $u3_thresh $T_thresh
+./moment_differ.sh $moment_filename_expected $moment_filename_test $m_thresh $u1_thresh $u2_thresh $u3_thresh $T_thresh
 exit_val=$?
 
 exit $exit_val

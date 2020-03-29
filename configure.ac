@@ -69,11 +69,15 @@ else
 fi
 ])
 
-if test -d "${FFTW_PREFIX}/lib" ; then
+if test -d "${FFTW_LIB}" ; then
+   FFTW_LIBS="-L${FFTW_LIB} -lfftw3_threads -lfftw3"
+elif test -d "${FFTW_PREFIX}/lib" ; then
    FFTW_LIBS="-L${FFTW_PREFIX}/lib -lfftw3_threads -lfftw3"
 fi
 
-if test -d "${FFTW_PREFIX}/include" ; then
+if test -d "${FFTW_INCLUDE}" ; then
+   FFTW_CFLAGS="-I${FFTW_INCLUDE}"
+elif test -d "${FFTW_PREFIX}/include" ; then
    FFTW_CFLAGS="-I${FFTW_PREFIX}/include"
 fi
 
@@ -86,7 +90,7 @@ CPPFLAGS="${FFTW_CFLAGS} ${CPPFLAGS}"
 LDFLAGS="${FFTW_LIBS} ${LDFLAGS}"
 AC_LANG_PUSH([C++])
 AC_CHECK_HEADER([fftw3.h],[found_header=yes],[found_header=no])
-AC_CHECK_LIB([fftw3],fftw_init_threads,[found_library=yes],[found_library=no])
+AC_CHECK_LIB([fftw3_threads],fftw_init_threads,[found_library=yes],[found_library=no])
 AC_LANG_POP([C++])
 
 succeeded=no

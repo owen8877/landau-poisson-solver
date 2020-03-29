@@ -109,13 +109,13 @@ int main()
 	// CHECK THE LEVEL OF THREAD SUPPORT:
 	if (provided < required)																		// only do this if the required thread support was not possible
 	{
-		if (myrank_mpi == 0)
-		{
-			printf( "provided=%d < required=%d. Warning:  This MPI implementation "
-						"provides insufficient threading support.\n", provided, required);			// have the process with rank 0 display in the output file that the required thread support was not possible
-			MPI_Finalize();																			// ensure that MPI exits cleanly
-			exit(0);
-		}
+//		if (myrank_mpi == 0)
+//		{
+//			printf( "provided=%d < required=%d. Warning:  This MPI implementation "
+//						"provides insufficient threading support.\n", provided, required);			// have the process with rank 0 display in the output file that the required thread support was not possible
+//			MPI_Finalize();																			// ensure that MPI exits cleanly
+//			exit(0);
+//		}
 	}
 	else
 	{
